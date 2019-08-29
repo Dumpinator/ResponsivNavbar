@@ -1,0 +1,185 @@
+:root {
+    --primary-color: rgba(206, 226, 125, 1);
+    --overlay-color: rgba(151, 184, 17, 1);
+    --menu-speed: 0.75s;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* overflow-x: hidden; */
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+    background-color: var(--primary-color);
+}
+
+nav .menu ul {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+nav .menu ul li {
+  margin: 5%;
+}
+nav .menu ul li:hover a {
+  color: blueviolet;
+  border-bottom: solid white 2px;
+}
+nav .menu ul li a {
+  text-decoration: none;
+  color: var(--overlay-color);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.logo > h4 {
+  color: blueviolet;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* CSS Toggler with invible input chackbox */
+nav .menu .toggler {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    cursor: pointer;
+    width: 10vh;
+    height: 10vh;
+    opacity: 0;
+  }
+/* toggler animation */
+nav .toggler:checked + .hamburger > div {
+    transform: rotate(135deg);
+}
+/* turn line into X */
+nav .toggler:checked + .hamburger > div:before,
+nav .toggler:checked + .hamburger > div:after {
+    top: 0;
+    transform: rotate(90deg);
+}
+/* rotate burger before clicked */
+nav .toggler:checked:hover + .hamburger > div {
+    transform: rotate(225deg);
+}
+
+/* BURGER */
+nav div .hamburger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 10vh;
+    height: 10vh;
+    padding: 1rem;
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* burger lines */
+nav div .hamburger > div {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease; 
+}
+nav div .hamburger > div:before,
+nav div .hamburger > div:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -10px;
+    width: 100%;
+    height: 2px;
+    background: inherit;
+}
+nav div .hamburger > div:after {
+    top: 10px;
+}
+.menu > div {
+  visibility: hidden;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  nav {
+    justify-content: flex-start;
+    padding-left: 10vw;
+  }
+  .menu > div {
+    visibility: visible;
+  }
+  nav .menu > ul {
+    position: absolute;
+    top: 10vh;
+    right: 0;
+
+    height: 90vh;
+    width: 100%;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transform: translateX(calc(100%));
+    transition: all 0.4s ease;
+
+    background-color: var(--overlay-color);
+  }
+  nav .menu ul li {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    z-index: 2;
+    width: 100%;
+    cursor: pointer;
+  }
+  .menu ul li:hover {
+    background-color: white;
+    
+  }
+  nav .menu ul li:hover a {
+    color: var(--overlay-color);
+  }
+  nav .menu ul li a {
+    color: var(--primary-color);
+  }
+  
+  .toggler:checked ~ ul {
+    transform: translateX( calc(0%));
+    transition: all 0.4s ease;
+  }
+}
